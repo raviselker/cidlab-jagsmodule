@@ -4,6 +4,10 @@
 /module/autom4te.cache/
 /module/m4/
 /module/src/.libs
+/module/src/functions/.libs
+/module/src/functions/.deps
+/module/src/distributions/.libs
+/module/src/distributions/.deps
 *.la
 /module/INSTALL
 /module/Makefile
