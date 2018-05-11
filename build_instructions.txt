@@ -1,0 +1,27 @@
+The Ubuntu-PPA somehow doesn't find the jags-4.0.0 dependency and won't build: 
+https://launchpad.net/~cidlab/+archive/ubuntu/jwm/+build/8323261
+If anyone knows how to fix this please let me know...
+
+One solution is to roll back to an older JAGS version. If you do need the 
+current 4.x version, no worries: the jags-wiener module is compatible, but needs
+ to be installed manually as follows.
+
+- Download the latest source tarball:
+https://sourceforge.net/projects/jags-wiener/files/JAGS-WIENER-MODULE-1.1.tar.gz/download
+
+- Then do the following steps:
+$ tar xvzf JAGS-WIENER-MODULE-1.1.tar.gz
+$ cd JAGS-WIENER-MODULE-1.1
+$ sudo apt-get install -y autoconf automake libtool g++ && autoreconf -fvi
+$ ./configure --prefix=/usr
+$ make && sudo make install
+
+- That's it
+
+Sorry for the inconvenience!
+
+
+Note: Please use common sense when installing and compiling software.  We cannot 
+be held responsible for anything that goes wrong with this process.  These 
+instructions fall under the GPL licensing terms included with the module download.
+
