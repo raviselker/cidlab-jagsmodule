@@ -1,22 +1,23 @@
 #ifndef BERN_FUNC_H_
 #define BERN_FUNC_H_
 
-#include <function/ScalarFunction.h> // the base class unsigned
+#include <function/VectorFunction.h>
 
 namespace jags {
 namespace Bernoulli {
 
-  class LogBernFun : public ScalarFunction
-  {
+    class LogBernFun : public VectorFunction
+    {
     public:
-      LogBernFun(); // the constructor formula
+      LogBernFun();
 
-      // the two necessary functions that have to be implemented
-      bool checkParameterValue(std::vector<double const *> const &args) const;
-      double evaluate(std::vector<double const *> const &args) const;
-  };
+      void evaluate(double *value, std::vector <double const *> const &args,
+		                std::vector <unsigned int> const &lengths) const;
+	    unsigned int length(std::vector<unsigned int> const &parlengths,
+			                    std::vector<double const *> const &parvalues) const;
+	    bool isDiscreteValued(std::vector<bool> const &mask) const;
+    };
 
-}
-}
+}}
 
 #endif /* BERN_FUNC_H_ */

@@ -6,46 +6,57 @@
 #include <iostream>
 #include <typeinfo>
 
+#include <algorithm>
+
+#include <util/dim.h>
+#include <util/logical.h>
+
 using std::vector; // vector is used in the code
 using std::string; // string is used in the code
 
-// #define x(par) (*args[0])
-// #define prob(par) (*args[1])
-
 #define choice (args[0])
-//#define reward (*args[1])
-//#define va (*args[2])
-//#define vb (*args[3])
-//#define a (*args[4])
+#define reward (args[1])
+#define va0 (*args[2])
+#define vb0 (*args[3])
+#define a (*args[4])
 
 namespace jags {
 namespace Bernoulli {
 
-  // constructor function
-  LogBernFun::LogBernFun() :ScalarFunction("logbern", 5)
-  {}
+    LogBernFun::LogBernFun() :VectorFunction ("reswagner", 5)
+    {}
 
-  // checks if the parameter pi lies between 0 and 1
-  bool LogBernFun::checkParameterValue(vector<double const *> const &args) const
-  {
-    //return (x(par) == 0.0 || x(par) == 1.0
-    //  && (prob(par) <= 1.0 && prob(par) >= 0.0));
-  }
+    void LogBernFun::evaluate (double *value, vector <double const *> const &args,
+			                         vector<unsigned int> const &lengths) const
+    {
+      int N = lengths[0];
+      std::vector<double> va (N + 1, 0.0);
+      std::vector<double> vb (N + 1, 0.0);
+      va[0] = va0;
+      vb[0] = vb0;
 
-  // does the computation that the logical node is supposed to do
-  double LogBernFun::evaluate(vector<double const *> const &args) const
-  {
-    for (int i = 0; i < args.size(); i++) {
-      printf("%i\n", i);
-      printf("%.7lf\n", *args[i]);
+      for (unsigned int i = 0; i < N; i++) {
+        if (choice[i] == 0) {
+          va[i + 1] = va[i] + a * (reward[i] - va[i]);
+        } else {
+          vb[i + 1] = vb[i] + a * (reward[i] - vb[i]);
+        }
+
+        value[i] = exp(va[i + 1]) / (exp(va[i + 1]) + exp(vb[i + 1]));
+      }
+
+      // std::cout << "va0: " << va[0] << '\n';
     }
-    // printf("%lo\n", sizeof(*args[2]));
-    // printf("%.7lf\n",x(par));
-    // printf("%.7lf\n",prob(par));
-    // printf("%.7lf\n", *args[1]);
-    //double d = ( (x(par) == 1) ? prob(par) : 1-prob(par) );
-    //return (d == 0) ? JAGS_NEGINF : log(d);
-  }
 
-}
-}
+    unsigned int LogBernFun::length (vector<unsigned int> const &parlengths,
+			                               vector<double const *> const &parvalues) const
+    {
+	      return parlengths[0];
+    }
+
+    bool LogBernFun::isDiscreteValued(vector<bool> const &mask) const
+    {
+	      return allTrue(mask);
+    }
+
+}}
