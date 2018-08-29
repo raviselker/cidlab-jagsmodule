@@ -1,15 +1,15 @@
-#ifndef BERN_FUNC_H_
-#define BERN_FUNC_H_
+#ifndef RESWAGNER_FUNC_H_
+#define RESWAGNER_FUNC_H_
 
 #include <function/VectorFunction.h>
 
 namespace jags {
-namespace Bernoulli {
+namespace cidlab {
 
-    class LogBernFun : public VectorFunction
+    class ResWagner : public VectorFunction
     {
     public:
-      LogBernFun();
+      ResWagner();
 
       void evaluate(double *value, std::vector <double const *> const &args,
 		                std::vector <unsigned int> const &lengths) const;
@@ -20,4 +20,4 @@ namespace Bernoulli {
 
 }}
 
-#endif /* BERN_FUNC_H_ */
+#endif /* RESWAGNER_FUNC_H_ */

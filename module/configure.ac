@@ -1,6 +1,6 @@
 AC_PREREQ([2.68])
 
-AC_INIT([JAGS-BERN], [1.1], [emailof@auth.or], [JAGS-BERN-MODULE])
+AC_INIT([JAGS-CIDLAB], [1.0], [selker.ravi@gmail.com], [JAGS-CIDLAB-MODULE])
 JAGS_MAJOR=4
 JAGS_MINOR=0
 AC_SUBST(JAGS_MAJOR)

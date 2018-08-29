@@ -1,25 +1,25 @@
 #include <module/Module.h> // include JAGS module base class
 #include <distributions/DBern.h> // include Bernoulli distribution class
-#include <functions/LogBernFun.h> // include Bernoulli function class
+#include <functions/ResWagner.h> // include ResWagner function class
 
 namespace jags {
-namespace Bernoulli { // start defining the module namespace
+namespace cidlab { // start defining the module namespace
 
   // Module class
-  class BERNModule : public Module {
+  class CIDLABModule : public Module {
     public:
-      BERNModule(); // constructor
-      ~BERNModule(); // destructor
+      CIDLABModule(); // constructor
+      ~CIDLABModule(); // destructor
   };
 
   // Constructor function
-  BERNModule::BERNModule() : Module("Bernoulli") {
-    insert(new DBern); // inherited function to load objects into JAGS
-    insert(new LogBernFun);
+  CIDLABModule::CIDLABModule() : Module("cidlab") {
+    // insert(new DBern); // inherited function to load objects into JAGS
+    insert(new ResWagner);
   }
 
   // Destructor function
-  BERNModule::~BERNModule() {
+  CIDLABModule::~CIDLABModule() {
     std::vector<Distribution*> const &dvec = distributions();
     for (unsigned int i = 0; i < dvec.size(); ++i) {
       delete dvec[i]; // delete all instantiated distribution objects
@@ -34,4 +34,4 @@ namespace Bernoulli { // start defining the module namespace
 } // end namespace definition
 }
 
-jags::Bernoulli::BERNModule _Bernoulli_module;
+jags::cidlab::CIDLABModule _cidlab_module;

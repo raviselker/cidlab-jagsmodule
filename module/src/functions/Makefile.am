@@ -1,9 +1,9 @@
-noinst_LTLIBRARIES = Bernoullifunc.la
+noinst_LTLIBRARIES = cidlabfunc.la
 
-Bernoullifunc_la_CPPFLAGS = -I$(top_srcdir)/src -I$(includedir)/JAGS
+cidlabfunc_la_CPPFLAGS = -I$(top_srcdir)/src -I$(includedir)/JAGS
 
-Bernoullifunc_la_LDFLAGS = -no-undefined -module -avoid -version
+cidlabfunc_la_LDFLAGS = -no-undefined -module -avoid -version
 
-Bernoullifunc_la_SOURCES = LogBernFun.cc
+cidlabfunc_la_SOURCES = ResWagner.cc
 
-noinst_HEADERS = LogBernFun.h
+noinst_HEADERS = ResWagner.h

@@ -1,20 +1,20 @@
 SUBDIRS = distributions functions
 
-jagsmod_LTLIBRARIES = Bernoulli.la
+jagsmod_LTLIBRARIES = cidlab.la
 
-Bernoulli_la_SOURCES = Bernoulli.cc
+cidlab_la_SOURCES = cidlab.cc
 
-Bernoulli_la_CPPFLAGS = -I$(includedir)/JAGS
+cidlab_la_CPPFLAGS = -I$(includedir)/JAGS
 
-Bernoulli_la_LIBADD = distributions/Bernoullidist.la
-Bernoulli_la_LIBADD += functions/Bernoullifunc.la
+cidlab_la_LIBADD = distributions/Bernoullidist.la
+cidlab_la_LIBADD += functions/cidlabfunc.la
 if WINDOWS
-Bernoulli_la_LIBADD += -ljags-$(JAGS_MAJOR)
+cidlab_la_LIBADD += -ljags-$(JAGS_MAJOR)
 else
-Bernoulli_la_LIBADD += -ljags
+cidlab_la_LIBADD += -ljags
 endif
 
-Bernoulli_la_LDFLAGS = -module -avoid-version
+cidlab_la_LDFLAGS = -module -avoid-version
 if WINDOWS
-Bernoulli_la_LDFLAGS += -no-undefined
+cidlab_la_LDFLAGS += -no-undefined
 endif

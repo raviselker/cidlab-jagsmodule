@@ -1,5 +1,5 @@
 #include <config.h>
-#include "LogBernFun.h" // class header file
+#include "ResWagner.h" // class header file
 #include <util/nainf.h> // provides na and inf functions
 
 #include <cmath> // basic math operations
@@ -21,12 +21,12 @@ using std::string; // string is used in the code
 #define a (*args[4])
 
 namespace jags {
-namespace Bernoulli {
+namespace cidlab {
 
-    LogBernFun::LogBernFun() :VectorFunction ("reswagner", 5)
+    ResWagner::ResWagner() :VectorFunction ("reswagner", 5)
     {}
 
-    void LogBernFun::evaluate (double *value, vector <double const *> const &args,
+    void ResWagner::evaluate (double *value, vector <double const *> const &args,
 			                         vector<unsigned int> const &lengths) const
     {
       int N = lengths[0];
@@ -48,13 +48,13 @@ namespace Bernoulli {
       // std::cout << "va0: " << va[0] << '\n';
     }
 
-    unsigned int LogBernFun::length (vector<unsigned int> const &parlengths,
+    unsigned int ResWagner::length (vector<unsigned int> const &parlengths,
 			                               vector<double const *> const &parvalues) const
     {
 	      return parlengths[0];
     }
 
-    bool LogBernFun::isDiscreteValued(vector<bool> const &mask) const
+    bool ResWagner::isDiscreteValued(vector<bool> const &mask) const
     {
 	      return allTrue(mask);
     }

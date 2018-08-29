@@ -32,3 +32,7 @@
 /module/src/functions/Bernoullifunc_la-LogBernFun.lo
 /module/src/functions/Makefile
 /module/stamp-h1
+/module/config.h.in~
+/module/src/.deps/cidlab_la-cidlab.Plo
+/module/src/cidlab_la-cidlab.lo
+/module/src/functions/cidlabfunc_la-ResWagner.lo
