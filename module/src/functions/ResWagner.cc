@@ -19,11 +19,12 @@ using std::string; // string is used in the code
 #define va0 (*args[2])
 #define vb0 (*args[3])
 #define a (*args[4])
+#define beta (*args[5])
 
 namespace jags {
 namespace cidlab {
 
-    ResWagner::ResWagner() :VectorFunction ("reswagner", 5)
+    ResWagner::ResWagner() :VectorFunction ("reswagner", 6)
     {}
 
     void ResWagner::evaluate (double *value, vector <double const *> const &args,
@@ -38,11 +39,13 @@ namespace cidlab {
       for (unsigned int i = 0; i < N; i++) {
         if (choice[i] == 0) {
           va[i + 1] = va[i] + a * (reward[i] - va[i]);
+          vb[i + 1] = vb[i];
         } else {
+          va[i + 1] = va[i];
           vb[i + 1] = vb[i] + a * (reward[i] - vb[i]);
         }
 
-        value[i] = exp(va[i + 1]) / (exp(va[i + 1]) + exp(vb[i + 1]));
+        value[i] = exp(beta * (vb[i + 1] - va[i + 1])) / (1 + exp(beta * (vb[i + 1] - va[i + 1])));
       }
 
       // std::cout << "va0: " << va[0] << '\n';

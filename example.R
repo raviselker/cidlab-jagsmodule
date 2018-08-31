@@ -1,39 +1,23 @@
 rjags::unload.module('cidlab')
 rjags::load.module('cidlab')
 
-Va0 <- runif(1, 0, 1)
-Vb0 <- runif(1, 0, 1)
-a <- runif(1,0,1)
-nTrials <- 100
+source('simData.R')
 
-choice <- rbinom(1, 1, 0.5)
-correct <- c(rbinom(nTrials / 2, 1, 0.9), rbinom(nTrials / 2, 1, 0.3))
+dataAll <- resWagnerSim(1000, a=0.4, beta=5, pcor=0.7)
+plot(dataAll$theta, type='l')
 
-Va <- Va0; Vb <- Vb0; theta <- numeric(nTrials); reward <- numeric(nTrials)
-for (i in 1:nTrials) {
+data <- list(N=dataAll$N, choice=dataAll$choice, choice2=dataAll$choice, reward=dataAll$reward)
 
-    c <- choice[i]
-    r <- as.numeric(choice[i] == correct[i])
-    reward[i] <- r
-
-    if (c == 0)
-        Va <- Va + a*(r - Va)
-    else
-        Vb <- Vb + a*(r - Vb)
-
-    theta[i] <- exp(Vb) / (exp(Va) + exp(Vb))
-    choice[i+1] <- rbinom(1, 1, theta[i])
-}
-
-data <- list('N'=nTrials, 'choice'=choice, 'choice2'=choice, 'reward'=reward)
+#### Using the JAGS module ----
 
 modelSyntax <- '
 model {
     va ~ dunif(0,1)
     vb ~ dunif(0,1)
     a ~ dunif(0,1)
+    beta ~ dgamma(2,1)
 
-    theta <- reswagner(choice, reward, va, vb, a)
+    theta <- reswagner(choice, reward, va, vb, a, beta)
     for (i in 1:N) {
         choice2[i] ~ dbern(theta[i])
     }
@@ -50,6 +34,7 @@ for (i in 1:nchains) {
     va <- runif(1, 0, 1)
     vb <- runif(1, 0, 1)
     a <- runif(1, 0, 1)
+    beta <- rgamma(1, 2, 1)
     inits[[i]] <- list(va=va, vb=vb, a=a)
 }
 
@@ -59,6 +44,41 @@ model <- rjags::jags.model(file = textConnection(modelSyntax),
                            n.chains = nchains, inits = inits)
 
 update(model, nburnin)
-samples <- rjags::jags.samples(model, c('a'), nsamples, thin=nthin)
+samples <- rjags::jags.samples(model, c('theta','a', 'beta'), nsamples, thin=nthin)
 
-plot(density(samples[[1]][,,]))
+plot(density(samples[['a']][,,]))
+plot(samples[['a']][,,], samples[['beta']][,,])
+
+#### Using straight JAGS code ----
+
+modelSyntax2 <- '
+model {
+    a ~ dunif(0,1)
+    va ~ dunif(0,1)
+    vb ~ dunif(0,1)
+    beta ~ dgamma(2,1)
+
+    Va[1] <- va
+    Vb[1] <- vb
+    theta[1] <- exp(Va[1]) / (exp(Va[1]) + exp(Vb[1]))
+    choice[1] ~ dbern(theta[1])
+
+    for (i in 2:N) {
+        Va[i] <- ifelse(choice[i-1] == 0,  Va[i-1] + a*(reward[i-1] - Va[i-1]), Va[i-1])
+        Vb[i] <- ifelse(choice[i-1] == 1,  Vb[i-1] + a*(reward[i-1] - Vb[i-1]), Vb[i-1])
+        theta[i] <- exp(beta * (Vb[i] - Va[i])) / (1 + exp(beta * (Vb[i] - Va[i])))
+        choice[i] ~ dbern(theta[i])
+    }
+}'
+
+data2 <- list('choice'=dataAll$choice, 'reward'=dataAll$reward, 'N'=dataAll$N)
+
+model2 <- rjags::jags.model(file = textConnection(modelSyntax2),
+                           data = data2,
+                           n.chains = nchains, inits = inits)
+
+update(model2, nburnin)
+
+samples2 <- rjags::jags.samples(model2, c('beta','a'), nsamples, thin=nthin)
+
+plot(density(samples2[['a']][,,]))
