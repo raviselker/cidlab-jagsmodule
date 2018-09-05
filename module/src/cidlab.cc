@@ -1,6 +1,8 @@
 #include <module/Module.h> // include JAGS module base class
 #include <distributions/DBern.h> // include Bernoulli distribution class
 #include <functions/ResWagner.h> // include ResWagner function class
+#include <functions/TTB.h> // include Take The Best function class
+
 
 namespace jags {
 namespace cidlab { // start defining the module namespace
@@ -16,6 +18,7 @@ namespace cidlab { // start defining the module namespace
   CIDLABModule::CIDLABModule() : Module("cidlab") {
     // insert(new DBern); // inherited function to load objects into JAGS
     insert(new ResWagner);
+    insert(new TTB);
   }
 
   // Destructor function
