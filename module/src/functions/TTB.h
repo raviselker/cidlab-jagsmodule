@@ -9,14 +9,14 @@ namespace cidlab {
     class TTB : public ScalarVectorFunction
     {
     public:
-      TTB();
+        TTB();
 
-      double scalarEval(std::vector <double const *> const &args,
-		                    std::vector <unsigned int> const &lengths) const;
+        double scalarEval(std::vector <double const *> const &args,
+                          std::vector <unsigned int> const &lengths) const;
 
-      bool checkParameterLength(std::vector<unsigned int> const &lengths) const;
+        bool checkParameterLength(std::vector<unsigned int> const &lengths) const;
 
-	    bool isDiscreteValued(std::vector<bool> const &mask) const;
+        bool isDiscreteValued(std::vector<bool> const &mask) const;
     };
 
 }}

@@ -27,39 +27,38 @@ namespace cidlab {
     ResWagner::ResWagner() :VectorFunction ("reswagner", 6)
     {}
 
-    void ResWagner::evaluate (double *value, vector <double const *> const &args,
-			                         vector<unsigned int> const &lengths) const
-    {
-      int N = lengths[0];
-      std::vector<double> va (N + 1, 0.0);
-      std::vector<double> vb (N + 1, 0.0);
-      va[0] = va0;
-      vb[0] = vb0;
+        void ResWagner::evaluate (double *value, vector <double const *> const &args,
+                                  vector<unsigned int> const &lengths) const
+        {
+            int N = lengths[0];
+            std::vector<double> va (N + 1, 0.0);
+            std::vector<double> vb (N + 1, 0.0);
+            va[0] = va0;
+            vb[0] = vb0;
 
-      for (unsigned int i = 0; i < N; i++) {
-        if (choice[i] == 0) {
-          va[i + 1] = va[i] + a * (reward[i] - va[i]);
-          vb[i + 1] = vb[i];
-        } else {
-          va[i + 1] = va[i];
-          vb[i + 1] = vb[i] + a * (reward[i] - vb[i]);
+            for (unsigned int i = 0; i < N; i++) {
+                if (choice[i] == 0) {
+                    va[i + 1] = va[i] + a * (reward[i] - va[i]);
+                    vb[i + 1] = vb[i];
+                } else {
+                    va[i + 1] = va[i];
+                    vb[i + 1] = vb[i] + a * (reward[i] - vb[i]);
+                }
+
+            value[i] = exp(beta * (vb[i + 1] - va[i + 1])) / (1 + exp(beta * (vb[i + 1] - va[i + 1])));
         }
-
-        value[i] = exp(beta * (vb[i + 1] - va[i + 1])) / (1 + exp(beta * (vb[i + 1] - va[i + 1])));
-      }
 
       // std::cout << "va0: " << va[0] << '\n';
     }
 
     unsigned int ResWagner::length (vector<unsigned int> const &parlengths,
-			                               vector<double const *> const &parvalues) const
+                                    vector<double const *> const &parvalues) const
     {
-	      return parlengths[0];
+        return parlengths[0];
     }
 
     bool ResWagner::isDiscreteValued(vector<bool> const &mask) const
     {
-	      return allTrue(mask);
+        return allTrue(mask);
     }
-
 }}
