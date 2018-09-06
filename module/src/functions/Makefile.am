@@ -9,9 +9,11 @@ cidlabfunc_la_SOURCES += TTB.cc
 cidlabfunc_la_SOURCES += TTBk.cc
 cidlabfunc_la_SOURCES += WFCP.cc
 cidlabfunc_la_SOURCES += TALLYk.cc
+cidlabfunc_la_SOURCES += WADDk.cc
 
 noinst_HEADERS = ResWagner.h
 noinst_HEADERS += TTB.h
 noinst_HEADERS += TTBk.h
 noinst_HEADERS += WFCP.h
 noinst_HEADERS += TALLYk.h
+noinst_HEADERS += WADDk.h
