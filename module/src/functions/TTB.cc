@@ -5,7 +5,6 @@
 #include <cmath> // basic math operations
 #include <iostream>
 #include <typeinfo>
-#include <stdlib.h>
 
 #include <algorithm>
 
@@ -18,12 +17,11 @@ using std::string; // string is used in the code
 #define stimA (args[0])
 #define stimB (args[1])
 #define s (args[2]) // order of validities
-#define k (*args[3]) // number of discriminating cues before decision is made
 
 namespace jags {
 namespace cidlab {
 
-    TTB::TTB() :ScalarVectorFunction ("TTB", 4)
+    TTB::TTB() :ScalarVectorFunction ("TTB", 3)
     {}
 
     double TTB::scalarEval (vector <double const *> const &args,
@@ -35,26 +33,18 @@ namespace cidlab {
             index[i] = (int)s[i]-1;
         }
 
-        unsigned int kA = 0;
-        unsigned int kB = 0;
         unsigned int value;
         for (unsigned int i = 0; i < N; i++) {
             if (stimA[index[i]] > stimB[index[i]]) {
-                kA++;
-                if (kA == k) {
-                    value = 0;
-                    break;
-                }
+                value = 1;
+                break;
             } else if (stimB[index[i]] > stimA[index[i]]) {
-                kB++;
-                if (kB == k) {
-                    value = 1;
-                    break;
-                }
+                value = 0;
+                break;
             }
 
             if (i == (N - 1)) {
-                value = rand()%(2);
+                value = 0.5;
                 break;
             }
         }
