@@ -3,6 +3,7 @@
 #include <functions/ResWagner.h> // include ResWagner function class
 #include <functions/TTB.h> // include Take The Best function class
 #include <functions/TTBk.h> // include Take The Best-k function class
+#include <functions/WFCP.h> // include sequential sampling function class
 
 
 namespace jags {
@@ -21,6 +22,7 @@ namespace cidlab { // start defining the module namespace
     insert(new ResWagner);
     insert(new TTB);
     insert(new TTBk);
+    insert(new WFCP);
   }
 
   // Destructor function

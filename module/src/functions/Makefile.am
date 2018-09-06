@@ -7,7 +7,9 @@ cidlabfunc_la_LDFLAGS = -no-undefined -module -avoid -version
 cidlabfunc_la_SOURCES = ResWagner.cc
 cidlabfunc_la_SOURCES += TTB.cc
 cidlabfunc_la_SOURCES += TTBk.cc
+cidlabfunc_la_SOURCES += WFCP.cc
 
 noinst_HEADERS = ResWagner.h
 noinst_HEADERS += TTB.h
 noinst_HEADERS += TTBk.h
+noinst_HEADERS += WFCP.h
