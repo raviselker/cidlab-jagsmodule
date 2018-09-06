@@ -2,6 +2,7 @@
 #include <distributions/DBern.h> // include Bernoulli distribution class
 #include <functions/ResWagner.h> // include ResWagner function class
 #include <functions/TTB.h> // include Take The Best function class
+#include <functions/TTBk.h> // include Take The Best-k function class
 
 
 namespace jags {
@@ -19,6 +20,7 @@ namespace cidlab { // start defining the module namespace
     // insert(new DBern); // inherited function to load objects into JAGS
     insert(new ResWagner);
     insert(new TTB);
+    insert(new TTBk);
   }
 
   // Destructor function
