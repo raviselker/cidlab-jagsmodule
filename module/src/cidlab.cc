@@ -3,10 +3,10 @@
 #include <functions/ResWagner.h> // include ResWagner function class
 #include <functions/TTB.h> // include Take The Best function class
 #include <functions/TTBk.h> // include Take The Best-k function class
-#include <functions/WFCP.h> // include sequential sampling function class
 #include <functions/TALLY.h> // include TALLY function class
 #include <functions/TALLYk.h> // include TALLYk function class
 #include <functions/WADD.h> // include WADD function class
+#include <functions/WFCP.h> // include general random walk class
 #include <functions/HDP.h> // include general accumulator class
 #include <functions/kReason.h> // include k-reason class
 
@@ -27,10 +27,10 @@ namespace cidlab { // start defining the module namespace
     insert(new ResWagner);
     insert(new TTB);
     insert(new TTBk);
-    insert(new WFCP);
     insert(new TALLY);
     insert(new TALLYk);
     insert(new WADD);
+    insert(new WFCP);
     insert(new HDP);
     insert(new kReason);
   }
