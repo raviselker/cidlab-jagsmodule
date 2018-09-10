@@ -48,14 +48,13 @@ namespace cidlab {
 
         if (kA > kB) {
             value[0] = 1;
-            value[1] = kA - kB;
         } else if (kB > kA) {
             value[0] = 0;
-            value[1] = kA - kB;
         } else {
             value[0] = 0.5;
-            value[1] = 0;
         }
+
+        value[1] = kA - kB;
     }
 
     unsigned int TALLYk::length (vector<unsigned int> const &parlengths,

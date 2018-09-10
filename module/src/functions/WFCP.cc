@@ -18,9 +18,9 @@ using std::string; // string is used in the code
 #define stimB (args[1])
 #define v (args[2]) // validities
 #define s (args[3]) // order of validities
-#define begin (*args[4]) // beginning point
-#define lower (*args[5]) // lower boundry
-#define upper (*args[6]) // upper boundry
+#define k (*args[4]) // number of cues before decision is made
+#define bias (*args[5]) // general bias
+#define bound (*args[6]) // upper bound
 
 namespace jags {
 namespace cidlab {
@@ -37,25 +37,28 @@ namespace cidlab {
             index[i] = (int)s[i]-1;
         }
 
-        double val = begin;
-        for (unsigned int i = 0; i < N; i++) {
+        double ev = bias;
+        for (unsigned int i = 0; i < k; i++) {
             if (stimA[index[i]] > stimB[index[i]]) {
-                val += v[ index[i] ];
+                ev += v[ index[i] ];
             } else if (stimB[index[i]] > stimA[index[i]]) {
-                val -= v[ index[i] ];
+                ev -= v[ index[i] ];
             }
 
-            if (val >= upper) {
+            if (ev >= bound) {
                 value[0] = 1;
                 value[1] = i + 1;
+                value[2] = ev;
                 break;
-            } else if (val <= lower) {
+            } else if (ev <= -bound) {
                 value[0] = 0;
                 value[1] = i + 1;
+                value[2] = ev;
                 break;
-            } else if (i == (N - 1)) {
+            } else if (i == (k - 1)) {
                 value[0] = 0.5;
-                value[1] = N;
+                value[1] = k;
+                value[2] = ev;
                 break;
             }
         }
@@ -64,7 +67,7 @@ namespace cidlab {
     unsigned int WFCP::length (vector<unsigned int> const &parlengths,
                                vector<double const *> const &parvalues) const
     {
-        return 2;
+        return 3;
     }
 
     bool WFCP::isDiscreteValued(vector<bool> const &mask) const
