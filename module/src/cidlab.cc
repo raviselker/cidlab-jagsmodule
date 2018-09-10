@@ -8,6 +8,7 @@
 #include <functions/TALLYk.h> // include TALLYk function class
 #include <functions/WADD.h> // include WADD function class
 #include <functions/HDP.h> // include general accumulator class
+#include <functions/kReason.h> // include k-reason class
 
 
 namespace jags {
@@ -31,6 +32,7 @@ namespace cidlab { // start defining the module namespace
     insert(new TALLYk);
     insert(new WADD);
     insert(new HDP);
+    insert(new kReason);
   }
 
   // Destructor function
