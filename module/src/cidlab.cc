@@ -5,7 +5,6 @@
 #include <functions/TTBk.h> // include Take The Best-k function class
 #include <functions/WFCP.h> // include sequential sampling function class
 #include <functions/TALLYk.h> // include TALLYk function class
-#include <functions/WADDk.h> // include WADDk function class
 
 
 namespace jags {
@@ -26,7 +25,6 @@ namespace cidlab { // start defining the module namespace
     insert(new TTBk);
     insert(new WFCP);
     insert(new TALLYk);
-    insert(new WADDk);
   }
 
   // Destructor function
