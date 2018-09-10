@@ -4,6 +4,7 @@
 #include <functions/TTB.h> // include Take The Best function class
 #include <functions/TTBk.h> // include Take The Best-k function class
 #include <functions/WFCP.h> // include sequential sampling function class
+#include <functions/TALLY.h> // include TALLY function class
 #include <functions/TALLYk.h> // include TALLYk function class
 #include <functions/HDP.h> // include general accumulator class
 
@@ -25,6 +26,7 @@ namespace cidlab { // start defining the module namespace
     insert(new TTB);
     insert(new TTBk);
     insert(new WFCP);
+    insert(new TALLY);
     insert(new TALLYk);
     insert(new HDP);
   }
