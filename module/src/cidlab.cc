@@ -6,6 +6,7 @@
 #include <functions/WFCP.h> // include sequential sampling function class
 #include <functions/TALLY.h> // include TALLY function class
 #include <functions/TALLYk.h> // include TALLYk function class
+#include <functions/WADD.h> // include WADD function class
 #include <functions/HDP.h> // include general accumulator class
 
 
@@ -28,6 +29,7 @@ namespace cidlab { // start defining the module namespace
     insert(new WFCP);
     insert(new TALLY);
     insert(new TALLYk);
+    insert(new WADD);
     insert(new HDP);
   }
 
