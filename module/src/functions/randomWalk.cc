@@ -1,5 +1,5 @@
 #include <config.h>
-#include "WFCP.h" // class header file
+#include "randomWalk.h" // class header file
 #include <util/nainf.h> // provides na and inf functions
 
 #include <cmath> // basic math operations
@@ -25,10 +25,10 @@ using std::string; // string is used in the code
 namespace jags {
 namespace cidlab {
 
-    WFCP::WFCP() :VectorFunction ("WFCP", 7)
+    randomWalk::randomWalk() :VectorFunction ("randomWalk", 7)
     {}
 
-    void WFCP::evaluate (double *value, vector <double const *> const &args,
+    void randomWalk::evaluate (double *value, vector <double const *> const &args,
                          vector<unsigned int> const &lengths) const
     {
         int N = lengths[0];
@@ -55,22 +55,28 @@ namespace cidlab {
                 value[1] = i + 1;
                 value[2] = ev;
                 break;
-            } else if (i == (k - 1)) {
-                value[0] = 0.5;
-                value[1] = k;
-                value[2] = ev;
-                break;
             }
         }
+
+        if (ev > bias) {
+            value[0] = 1;
+        } else if (ev < bias) {
+            value[0] = 0;
+        } else {
+            value[0] = 0.5;
+        }
+
+        value[1] = k;
+        value[2] = ev;
     }
 
-    unsigned int WFCP::length (vector<unsigned int> const &parlengths,
+    unsigned int randomWalk::length (vector<unsigned int> const &parlengths,
                                vector<double const *> const &parvalues) const
     {
         return 3;
     }
 
-    bool WFCP::isDiscreteValued(vector<bool> const &mask) const
+    bool randomWalk::isDiscreteValued(vector<bool> const &mask) const
     {
         return allTrue(mask);
     }

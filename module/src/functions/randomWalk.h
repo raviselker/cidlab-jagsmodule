@@ -1,15 +1,15 @@
-#ifndef TTBk_FUNC_H_
-#define TTBk_FUNC_H_
+#ifndef randomWalk_FUNC_H_
+#define randomWalk_FUNC_H_
 
 #include <function/VectorFunction.h>
 
 namespace jags {
 namespace cidlab {
 
-    class TTBk : public VectorFunction
+    class randomWalk : public VectorFunction
     {
     public:
-        TTBk();
+        randomWalk();
 
         void evaluate(double *value, std::vector <double const *> const &args,
                       std::vector <unsigned int> const &lengths) const;
@@ -22,4 +22,4 @@ namespace cidlab {
 
 }}
 
-#endif /* TTBk_FUNC_H_ */
+#endif /* randomWalk_FUNC_H_ */

@@ -1,5 +1,5 @@
 #include <config.h>
-#include "HDP.h" // class header file
+#include "generalAccumulator.h" // class header file
 #include <util/nainf.h> // provides na and inf functions
 
 #include <cmath> // basic math operations
@@ -26,10 +26,10 @@ using std::string; // string is used in the code
 namespace jags {
 namespace cidlab {
 
-    HDP::HDP() :VectorFunction ("HDP", 8)
+    generalAccumulator::generalAccumulator() :VectorFunction ("generalAccumulator", 8)
     {}
 
-    void HDP::evaluate (double *value, vector <double const *> const &args,
+    void generalAccumulator::evaluate (double *value, vector <double const *> const &args,
                          vector<unsigned int> const &lengths) const
     {
         int N = lengths[0];
@@ -48,7 +48,13 @@ namespace cidlab {
                 evB -= v[ index[i] ];
             }
 
-            if (evA >= upper) {
+            if (evA >= upper && evA <= lower) {
+                value[0] = 0.5;
+                value[1] = i + 1;
+                value[2] = evA;
+                value[3] = evB;
+                break;
+            } if (evA >= upper) {
                 value[0] = 1;
                 value[1] = i + 1;
                 value[2] = evA;
@@ -70,13 +76,13 @@ namespace cidlab {
         }
     }
 
-    unsigned int HDP::length (vector<unsigned int> const &parlengths,
+    unsigned int generalAccumulator::length (vector<unsigned int> const &parlengths,
                                vector<double const *> const &parvalues) const
     {
         return 4;
     }
 
-    bool HDP::isDiscreteValued(vector<bool> const &mask) const
+    bool generalAccumulator::isDiscreteValued(vector<bool> const &mask) const
     {
         return allTrue(mask);
     }

@@ -22,7 +22,7 @@ using std::string; // string is used in the code
 namespace jags {
 namespace cidlab {
 
-    kReason::kReason() :VectorFunction ("kReason", 9)
+    kReason::kReason() :VectorFunction ("kReason", 4)
     {}
 
     void kReason::evaluate (double *value, vector <double const *> const &args,
@@ -44,7 +44,13 @@ namespace cidlab {
                 evB--;
             }
 
-            if (evA >= bound) {
+            if (evA >= bound && evB <= -bound) {
+                value[0] = 0.5;
+                value[1] = i + 1;
+                value[2] = evA;
+                value[3] = evB;
+                break;
+            } else if (evA >= bound) {
                 value[0] = 1;
                 value[1] = i + 1;
                 value[2] = evA;

@@ -33,7 +33,7 @@ namespace cidlab {
             index[i] = (int)s[i]-1;
         }
 
-        unsigned int value;
+        double value;
         for (unsigned int i = 0; i < N; i++) {
             if (stimA[index[i]] > stimB[index[i]]) {
                 value = 1;

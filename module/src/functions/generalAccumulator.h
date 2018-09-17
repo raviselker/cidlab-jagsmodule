@@ -1,15 +1,15 @@
-#ifndef WFCP_FUNC_H_
-#define WFCP_FUNC_H_
+#ifndef generalAccumulator_FUNC_H_
+#define generalAccumulator_FUNC_H_
 
 #include <function/VectorFunction.h>
 
 namespace jags {
 namespace cidlab {
 
-    class WFCP : public VectorFunction
+    class generalAccumulator : public VectorFunction
     {
     public:
-        WFCP();
+        generalAccumulator();
 
         void evaluate(double *value, std::vector <double const *> const &args,
                       std::vector <unsigned int> const &lengths) const;
@@ -22,4 +22,4 @@ namespace cidlab {
 
 }}
 
-#endif /* WFCP_FUNC_H_ */
+#endif /* generalAccumulator_FUNC_H_ */

@@ -2,12 +2,11 @@
 #include <distributions/DBern.h> // include Bernoulli distribution class
 #include <functions/ResWagner.h> // include ResWagner function class
 #include <functions/TTB.h> // include Take The Best function class
-#include <functions/TTBk.h> // include Take The Best-k function class
 #include <functions/TALLY.h> // include TALLY function class
 #include <functions/TALLYk.h> // include TALLYk function class
 #include <functions/WADD.h> // include WADD function class
-#include <functions/WFCP.h> // include general random walk class
-#include <functions/HDP.h> // include general accumulator class
+#include <functions/randomWalk.h> // include general random walk class
+#include <functions/generalAccumulator.h> // include general accumulator class
 #include <functions/kReason.h> // include k-reason class
 
 
@@ -26,12 +25,11 @@ namespace cidlab { // start defining the module namespace
     // insert(new DBern); // inherited function to load objects into JAGS
     insert(new ResWagner);
     insert(new TTB);
-    insert(new TTBk);
     insert(new TALLY);
     insert(new TALLYk);
     insert(new WADD);
-    insert(new WFCP);
-    insert(new HDP);
+    insert(new randomWalk);
+    insert(new generalAccumulator);
     insert(new kReason);
   }
 

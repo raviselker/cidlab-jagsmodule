@@ -34,27 +34,27 @@ namespace cidlab {
             index[i] = (int)s[i]-1;
         }
 
-        unsigned int kA = 0;
-        unsigned int kB = 0;
+        int evA = 0;
+        int evB = 0;
         for (unsigned int i = 0; i < k; i++) {
             if (stimA[index[i]] == 1) {
-                kA++;
+                evA++;
             }
 
             if (stimB[index[i]] == 1) {
-                kB++;
+                evB++;
             }
         }
 
-        if (kA > kB) {
+        if (evA > evB) {
             value[0] = 1;
-        } else if (kB > kA) {
+        } else if (evB > evA) {
             value[0] = 0;
         } else {
             value[0] = 0.5;
         }
 
-        value[1] = kA - kB;
+        value[1] = evA - evB;
     }
 
     unsigned int TALLYk::length (vector<unsigned int> const &parlengths,

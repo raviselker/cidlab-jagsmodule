@@ -34,8 +34,8 @@ namespace cidlab {
             index[i] = (int)s[i]-1;
         }
 
-        unsigned int kA = 0;
-        unsigned int kB = 0;
+        double kA = 0;
+        double kB = 0;
         for (unsigned int i = 0; i < N; i++) {
             if (stimA[index[i]] == 1) {
                 kA += v[index[i]];
