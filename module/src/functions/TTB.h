@@ -4,7 +4,7 @@
 #include <function/ScalarVectorFunction.h>
 
 namespace jags {
-namespace cidlab {
+namespace wfComboPack {
 
     class TTB : public ScalarVectorFunction
     {

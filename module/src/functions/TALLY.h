@@ -4,7 +4,7 @@
 #include <function/VectorFunction.h>
 
 namespace jags {
-namespace cidlab {
+namespace wfComboPack {
 
     class TALLY : public VectorFunction
     {

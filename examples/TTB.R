@@ -42,7 +42,7 @@ nburnin  <- 1000   # number of burnin samples
 nsamples <- 10000  # total number of samples
 nthin    <- 1      # thinning per chain
 
-rjags::load.module('cidlab')
+rjags::load.module('wfComboPack')
 
 
 model <- rjags::jags.model(file = textConnection(modelSyntax),

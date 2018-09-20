@@ -3,7 +3,7 @@
 #include <distribution/ScalarDist.h> // JAGS scalar distribution base class
 
 namespace jags {
-namespace Bernoulli {
+namespace wfComboPack {
 
 class DBern : public ScalarDist // scalar distribution class
 {

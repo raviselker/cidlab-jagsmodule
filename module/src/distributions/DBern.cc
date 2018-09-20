@@ -13,7 +13,7 @@ using std::max;       // max is used in code
 #define PROB(par) (*par[0]) // makes code more readable
 
 namespace jags {
-namespace Bernoulli { // module namespace
+namespace wfComboPack { // module namespace
 
 DBern::DBern() : ScalarDist("dbern2", 1, DIST_PROPORTION)
 {}

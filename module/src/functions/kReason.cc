@@ -20,7 +20,7 @@ using std::string; // string is used in the code
 #define bound (*args[3]) // upper bound
 
 namespace jags {
-namespace cidlab {
+namespace wfComboPack {
 
     kReason::kReason() :VectorFunction ("kReason", 4)
     {}

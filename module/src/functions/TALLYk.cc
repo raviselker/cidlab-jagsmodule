@@ -20,7 +20,7 @@ using std::string; // string is used in the code
 #define k (*args[3]) // number of discriminating cues before decision is made
 
 namespace jags {
-namespace cidlab {
+namespace wfComboPack {
 
     TALLYk::TALLYk() :VectorFunction ("TALLYk", 4)
     {}

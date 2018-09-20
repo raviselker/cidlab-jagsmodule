@@ -1,17 +1,17 @@
-noinst_LTLIBRARIES = cidlabfunc.la
+noinst_LTLIBRARIES = wfComboPackfunc.la
 
-cidlabfunc_la_CPPFLAGS = -I$(top_srcdir)/src -I$(includedir)/JAGS
+wfComboPackfunc_la_CPPFLAGS = -I$(top_srcdir)/src -I$(includedir)/JAGS
 
-cidlabfunc_la_LDFLAGS = -no-undefined -module -avoid -version
+wfComboPackfunc_la_LDFLAGS = -no-undefined -module -avoid -version
 
-cidlabfunc_la_SOURCES = ResWagner.cc
-cidlabfunc_la_SOURCES += TTB.cc
-cidlabfunc_la_SOURCES += TALLY.cc
-cidlabfunc_la_SOURCES += TALLYk.cc
-cidlabfunc_la_SOURCES += WADD.cc
-cidlabfunc_la_SOURCES += randomWalk.cc
-cidlabfunc_la_SOURCES += generalAccumulator.cc
-cidlabfunc_la_SOURCES += kReason.cc
+wfComboPackfunc_la_SOURCES = ResWagner.cc
+wfComboPackfunc_la_SOURCES += TTB.cc
+wfComboPackfunc_la_SOURCES += TALLY.cc
+wfComboPackfunc_la_SOURCES += TALLYk.cc
+wfComboPackfunc_la_SOURCES += WADD.cc
+wfComboPackfunc_la_SOURCES += randomWalk.cc
+wfComboPackfunc_la_SOURCES += generalAccumulator.cc
+wfComboPackfunc_la_SOURCES += kReason.cc
 
 noinst_HEADERS = ResWagner.h
 noinst_HEADERS += TTB.h

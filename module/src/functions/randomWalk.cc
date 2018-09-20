@@ -23,7 +23,7 @@ using std::string; // string is used in the code
 #define bound (*args[6]) // upper bound
 
 namespace jags {
-namespace cidlab {
+namespace wfComboPack {
 
     randomWalk::randomWalk() :VectorFunction ("randomWalk", 7)
     {}

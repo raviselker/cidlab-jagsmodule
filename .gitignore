@@ -49,3 +49,14 @@
 /module/src/functions/cidlabfunc_la-kReason.lo
 /module/src/functions/cidlabfunc_la-randomWalk.lo
 /module/src/functions/cidlabfunc_la-generalAccumulator.lo
+/module/src/.deps/wfComboPack_la-wfComboPack.Plo
+/module/src/distributions/wfComboPackdist_la-DBern.lo
+/module/src/functions/wfComboPackfunc_la-ResWagner.lo
+/module/src/functions/wfComboPackfunc_la-TALLY.lo
+/module/src/functions/wfComboPackfunc_la-TALLYk.lo
+/module/src/functions/wfComboPackfunc_la-TTB.lo
+/module/src/functions/wfComboPackfunc_la-WADD.lo
+/module/src/functions/wfComboPackfunc_la-generalAccumulator.lo
+/module/src/functions/wfComboPackfunc_la-kReason.lo
+/module/src/functions/wfComboPackfunc_la-randomWalk.lo
+/module/src/wfComboPack_la-wfComboPack.lo

@@ -24,7 +24,7 @@ using std::string; // string is used in the code
 #define upper (*args[7]) // upper boundry
 
 namespace jags {
-namespace cidlab {
+namespace wfComboPack {
 
     generalAccumulator::generalAccumulator() :VectorFunction ("generalAccumulator", 8)
     {}
@@ -48,7 +48,7 @@ namespace cidlab {
                 evB -= v[ index[i] ];
             }
 
-            if (evA >= upper && evA <= lower) {
+            if (evA >= upper && evB <= lower) {
                 value[0] = 0.5;
                 value[1] = i + 1;
                 value[2] = evA;

@@ -1,20 +1,20 @@
 SUBDIRS = distributions functions
 
-jagsmod_LTLIBRARIES = cidlab.la
+jagsmod_LTLIBRARIES = wfComboPack.la
 
-cidlab_la_SOURCES = cidlab.cc
+wfComboPack_la_SOURCES = wfComboPack.cc
 
-cidlab_la_CPPFLAGS = -I$(includedir)/JAGS
+wfComboPack_la_CPPFLAGS = -I$(includedir)/JAGS
 
-cidlab_la_LIBADD = distributions/Bernoullidist.la
-cidlab_la_LIBADD += functions/cidlabfunc.la
+wfComboPack_la_LIBADD = distributions/wfComboPackdist.la
+wfComboPack_la_LIBADD += functions/wfComboPackfunc.la
 if WINDOWS
-cidlab_la_LIBADD += -ljags-$(JAGS_MAJOR)
+wfComboPack_la_LIBADD += -ljags-$(JAGS_MAJOR)
 else
-cidlab_la_LIBADD += -ljags
+wfComboPack_la_LIBADD += -ljags
 endif
 
-cidlab_la_LDFLAGS = -module -avoid-version
+wfComboPack_la_LDFLAGS = -module -avoid-version
 if WINDOWS
-cidlab_la_LDFLAGS += -no-undefined
+wfComboPack_la_LDFLAGS += -no-undefined
 endif

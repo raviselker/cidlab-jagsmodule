@@ -11,17 +11,17 @@
 
 
 namespace jags {
-namespace cidlab { // start defining the module namespace
+namespace wfComboPack { // start defining the module namespace
 
   // Module class
-  class CIDLABModule : public Module {
+  class WFCOMBOPACKModule : public Module {
     public:
-      CIDLABModule(); // constructor
-      ~CIDLABModule(); // destructor
+      WFCOMBOPACKModule(); // constructor
+      ~WFCOMBOPACKModule(); // destructor
   };
 
   // Constructor function
-  CIDLABModule::CIDLABModule() : Module("cidlab") {
+  WFCOMBOPACKModule::WFCOMBOPACKModule() : Module("wfComboPack") {
     // insert(new DBern); // inherited function to load objects into JAGS
     insert(new ResWagner);
     insert(new TTB);
@@ -34,7 +34,7 @@ namespace cidlab { // start defining the module namespace
   }
 
   // Destructor function
-  CIDLABModule::~CIDLABModule() {
+  WFCOMBOPACKModule::~WFCOMBOPACKModule() {
     std::vector<Distribution*> const &dvec = distributions();
     for (unsigned int i = 0; i < dvec.size(); ++i) {
       delete dvec[i]; // delete all instantiated distribution objects
@@ -49,4 +49,4 @@ namespace cidlab { // start defining the module namespace
 } // end namespace definition
 }
 
-jags::cidlab::CIDLABModule _cidlab_module;
+jags::wfComboPack::WFCOMBOPACKModule _wfComboPack_module;

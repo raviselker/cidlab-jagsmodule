@@ -22,7 +22,7 @@ using std::string; // string is used in the code
 #define beta (*args[5])
 
 namespace jags {
-namespace cidlab {
+namespace wfComboPack {
 
     ResWagner::ResWagner() :VectorFunction ("reswagner", 6)
     {}

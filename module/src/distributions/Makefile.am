@@ -1,9 +1,9 @@
-noinst_LTLIBRARIES = Bernoullidist.la
+noinst_LTLIBRARIES = wfComboPackdist.la
 
-Bernoullidist_la_CPPFLAGS = -I$(top_srcdir)/src -I$(includedir)/JAGS
+wfComboPackdist_la_CPPFLAGS = -I$(top_srcdir)/src -I$(includedir)/JAGS
 
-Bernoullidist_la_LDFLAGS = -no-undefined -module -avoid -version
+wfComboPackdist_la_LDFLAGS = -no-undefined -module -avoid -version
 
-Bernoullidist_la_SOURCES = DBern.cc
+wfComboPackdist_la_SOURCES = DBern.cc
 
 noinst_HEADERS = DBern.h

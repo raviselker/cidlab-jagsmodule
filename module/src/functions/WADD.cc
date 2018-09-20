@@ -20,7 +20,7 @@ using std::string; // string is used in the code
 #define s (args[3]) // order of validities
 
 namespace jags {
-namespace cidlab {
+namespace wfComboPack {
 
     WADD::WADD() :VectorFunction ("WADD", 4)
     {}
